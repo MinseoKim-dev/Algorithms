@@ -5,9 +5,10 @@ class Solution:
         while left < right:
             candidate = numbers[left] + numbers[right]
             if target == candidate:
-                return [left+1, right+1]
+                break
             elif target > candidate:
                 left += 1
             else:
                 right -= 1
-        
+
+        return [left+1, right+1]
