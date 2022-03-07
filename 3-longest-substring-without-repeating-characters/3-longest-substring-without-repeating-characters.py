@@ -1,12 +1,20 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        str_to_list = list(s)
-        list_to_set = set(str_to_list)
-        maxlength = len(list_to_set)
-        while maxlength:
-            for i in range(len(s) - maxlength + 1):
-                substr = s[i:i + maxlength]
-                if len(list(substr)) == len(set(list(substr))):
-                    return maxlength
-            maxlength -= 1
-        return maxlength
+        total_max = 0
+        start = 0
+        used = {}
+        
+        if len(s) < 2:
+            return len(s)
+        
+        for i, char in enumerate(s):
+            if char in used and start <= used[char]:
+                start = used[char] + 1
+            else:
+                total_max = max(total_max, i - start + 1)
+            
+            used[char] = i
+            
+        return total_max
+            
+                
