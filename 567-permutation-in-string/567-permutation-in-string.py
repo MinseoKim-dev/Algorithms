@@ -7,8 +7,6 @@ class Solution:
         
         for i in range(len(s2)):
             if s2[i] in perm_counter:
-                if perm_counter[s2[i]] == 0:
-                    matched -= 1
                 perm_counter[s2[i]] -= 1
                 if perm_counter[s2[i]] == 0:
                     matched += 1
@@ -17,8 +15,6 @@ class Solution:
                 if perm_counter[s2[i-window_size]] == 0:
                     matched -= 1
                 perm_counter[s2[i-window_size]] += 1
-                if perm_counter[s2[i-window_size]] == 0:
-                    matched += 1
             
             if matched == len(perm_counter):
                 return True
